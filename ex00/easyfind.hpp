@@ -1,29 +1,32 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-// MACRO
-# define RESET		"\e[m"
-# define RED		"\e[31m"
-# define GREEN		"\e[32m"
-# define YELLOW		"\e[33m"
-# define BLUE		"\e[34m"
-# define MAGENTA	"\e[35m"
-# define CYAN		"\e[36m"
+# include <iostream>
+# include <vector>
+# include <list>
+# include <deque>
+# include <algorithm>
 
-template <typename T> void easyfind(T &a, int &b)
+// Color codes as global variables
+const std::string RESET = "\033[0m";
+const std::string RED = "\033[31;1m";
+const std::string GREEN = "\033[32;1m";
+const std::string YELLOW = "\033[33;1m";
+const std::string BLUE = "\033[34;1m";
+const std::string PURPLE = "\033[35;1m";
+const std::string CYAN = "\033[36;1m";
+const std::string GRAY = "\033[37;1m";
+
+template <typename T>
+typename T::iterator easyfind(T &first, int second)
 {
-    int len = a.length()
-    int count = 0;
+	typename T::iterator it;
 
-    for (size_t i = 0; i < len; i++)
-    {
-        if (a[i] == b)
-            count++;
-    }
-    if (count == 0)
-    {
-        std::cout << RED << "The number was not found"<< RESET << std::endl
-    }
+	it = std::find(first.begin(), first.end(), second);
+
+	if (it == first.end())
+		throw std::exception();
+	return it;
 }
 
 #endif
